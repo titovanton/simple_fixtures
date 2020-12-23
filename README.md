@@ -9,17 +9,21 @@
 
 ## Setup
 
-There is only 1 setting:
-
     # settings.py
+
+    INSTALLED_APPS = [
+        ...
+        'simple_fixtures',
+        ...
+    ]
 
     FIXTURES_INDEX = 'main.fixtures_index'  # index file
 
-The same, in this case, `main` app will have *fixtures* folder, after data has exported, or to use it for import.
+`FIXTURES_INDEX` serves 2 purposes: allocate `fixtures_index` file and specify app label, where to put `fixtures` folder.
 
 ## Index file
 
-It must have iterable entity, every item must be in the format `<app_lable>.<model_low_case>`:
+It must have iterable entity, every item must be in the format `<app_lable>.<model_lower>`:
 
     # main/fixtures_index.py
 
@@ -38,6 +42,6 @@ To prevent any typos, use `./manage.py models_list`.
 
 There are 3 management commands:
 
-* `./manage.py make_fixtures` - export data
-* `./manage.py load_fixtures` - import data
-* `./manage.py models_list` - available models to be exported
+* `./manage.py make_fixtures` - exports data, by using `fixtures_index` file
+* `./manage.py load_fixtures` - imports data, by using `fixtures_index` file
+* `./manage.py models_list` - shows available models to be exported
