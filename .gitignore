@@ -1,0 +1,6 @@
+*.pyc
+.pytest_cache
+.json
+.yaml
+.yml
+.xml
